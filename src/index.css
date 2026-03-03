@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+
+  --background-image-goodview: url("/images/img1.jpg")
+
+
+}

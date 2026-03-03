@@ -1,0 +1,65 @@
+import { useState, useEffect } from "react"
+
+export default function useHabitFunctions () {
+
+
+    //local storage -- checks if there is any data if not then returns empty string
+    const [habits,setHabits] = useState(()=> {
+        const stored = localStorage.getItem("habits")
+        return stored ? JSON.parse(stored) : []
+    })
+    
+    //This automatically saves changes 
+    useEffect(()=> {
+        localStorage.setItem("habits",JSON.stringify(habits))
+    },[habits])
+    
+    //adding new habits
+    const addHabit = (name) => {
+        const newHabit = {
+            id:Date.now(),
+            name,
+            completed:false,
+        }
+        setHabits((prev) => [...prev, newHabit])
+    }
+
+    
+    
+    const toggleHabit = (id) => {
+        setHabits((prev) => 
+            prev.map((habit) => 
+                habit.id === id ? {...habit, completed: !habit.completed} : habit
+
+            )
+        )
+    }
+
+    //delete habits 
+    const deleteHabit = (id) => {
+        setHabits((prev) => prev.filter((habit) => habit.id !== id))
+    }
+
+    const editHabit = (id, newName) => {
+        setHabits((prev) =>
+            prev.map((habit) => 
+                habit.id === id ? { ...habit, name: newName} : habit
+            
+            )
+        )
+    }
+
+    //progress
+    const habitsCompleteCount = habits.filter(h => h.completed).length
+
+
+    return{
+        habits,
+        addHabit,
+        toggleHabit,
+        deleteHabit,
+        editHabit,
+        habitsCompleteCount
+    }
+
+}
