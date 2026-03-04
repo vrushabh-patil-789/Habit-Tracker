@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
 
-  --background-image-goodview: url("/images/img1.jpg")
+  --background-image-goodview: url("/images/img1.jpg");
+
+  
 
 
 }

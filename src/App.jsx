@@ -1,6 +1,7 @@
 import useHabitFunctions from './useHabitFunctions'
 import HabitForm from './components/HabitForm'
 import HabitList from './components/HabitList'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 
@@ -18,14 +19,26 @@ function App() {
 
    const total = habits.length
    const percentage = total === 0 ? 0 : Math.round((habitsCompleteCount / total)*100)
-  return (
+
+   const [dark, setDark] = useState(()=> {
+    return localStorage.getItem("theme") === "dark"
+   })
+
+   useEffect (()=> {
+    document.documentElement.classList.toggle("dark",dark)
+    localStorage.setItem("theme", dark ? "dark":"light")
+   },[dark])
+
+   return (
     <>
 
     <div  className="relative min-h-screen bg-goodview bg-cover bg-no-repeat bg-center flex justify-center p-4">
       <div className="absolute top-6 right-10">
-        <button>
+        <button onClick={()=> setDark(prev => !prev)}
+          
+        >
           <img
-          src="/images/tomato.png"
+          src={dark  ? "/images/sun.png" : "/images/moon.png"}
           className="h-8 w-8"
           />
         </button>
