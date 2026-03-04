@@ -1,16 +1,146 @@
-# React + Vite
+# Habit Tracker 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean and minimal **Habit Tracking Web App** built with **React + Tailwind CSS** to help users stay consistent with their daily habits.
 
-Currently, two official plugins are available:
+This project focuses on building discipline through **daily streak tracking, habit progress visualization, and a productivity-focused Pomodoro timer**, all running entirely in the browser using **LocalStorage** — no backend required.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+# ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🧠 Habit Management
 
-## Expanding the ESLint configuration
+* Add new habits
+* Edit existing habits
+* Delete habits
+* Toggle habit completion
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🔥 Streak Tracking
+
+* Automatically tracks **daily streaks**
+* Streak increases when habits are completed on consecutive days
+* Streak resets when a day is missed
+
+### 📊 Progress Visualization
+
+* Shows completed habits vs total habits
+* Simple visual progress indicator
+
+### 🌙 Dark Mode
+
+* Fully responsive UI
+* Light / Dark theme support using Tailwind CSS
+
+### ⏱️ Pomodoro Timer
+
+* Built-in productivity timer
+* Helps users stay focused while building habits
+
+### 💾 LocalStorage Persistence
+
+* All habits and progress are stored in the browser
+* Data persists after page refresh
+* No backend required
+
+---
+
+# 🛠️ Tech Stack
+
+* **React (Functional Components + Hooks)**
+* **Tailwind CSS**
+* **LocalStorage API**
+* **JavaScript (ES6+)**
+
+---
+
+# 📂 Project Structure
+
+```
+src
+ ┣ components
+ ┃ ┣ HabitForm.jsx
+ ┃ ┣ HabitItem.jsx
+ ┃ ┣ HabitList.jsx
+ ┃ ┗ Pomodoro.jsx
+ ┣ hooks
+ ┃ ┗ useHabitFunctions.js
+ ┣ App.jsx
+ ┗ main.jsx
+```
+
+---
+
+# ⚙️ How It Works
+
+### Habit System
+
+Each habit is stored like this:
+
+```
+{
+ id: number,
+ name: string,
+ completed: boolean,
+ streak: number,
+ lastCompleted: date
+}
+```
+
+The app calculates streaks by comparing today's date with the `lastCompleted` date.
+
+---
+
+### LocalStorage Persistence
+
+The application automatically saves habits using:
+
+```
+localStorage.setItem("habits", JSON.stringify(habits))
+```
+
+When the app loads, it restores habits from LocalStorage.
+
+---
+
+# 📱 UI Design
+
+The UI focuses on **simplicity and usability**:
+
+* Clean minimal layout
+* Mobile responsive design
+* Dark mode support
+* Fast interactions
+
+---
+
+# 🎯 What I Learned
+
+Through this project I practiced:
+
+* React state management
+* Custom hooks
+* LocalStorage persistence
+* Component architecture
+* Tailwind CSS styling
+* Building real-world UI features
+* Debugging state issues in React
+
+---
+
+# 🚀 Future Improvements
+
+Potential features to add:
+
+* Weekly/monthly progress charts
+* GitHub-style habit heatmap
+* Notifications & reminders
+
+
+---
+
+
+---
+
+# 📄 License
+
+This project is open source and available under the MIT License.
