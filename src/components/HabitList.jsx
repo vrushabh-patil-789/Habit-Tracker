@@ -16,9 +16,11 @@ function HabitList({habits, toggleHabit, deleteHabit,editHabit}) {
                 <HabitItem
                 key={habit.id}
                 habit={habit}
+                
                 toggleHabit={toggleHabit}
                 deleteHabit={deleteHabit}
                 editHabit={editHabit}
+
                 />
             ))}
         </div>

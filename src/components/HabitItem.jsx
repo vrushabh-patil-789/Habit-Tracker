@@ -23,13 +23,20 @@ function HabitItem({ habit, toggleHabit, deleteHabit, editHabit }) {
                         autoFocus
                     />
                 ) : (
+                    <div className="flex flex-col">
                     <span
                         className={`text-gray-800 dark:text-white ${
                             habit.completed ? "line-through opacity-50" : ""
                         }`}
                     >
                         {habit.name}
+                        
                     </span>
+                    <p className="text-xs text-orange-500">
+                        {habit.streak} Day Streak
+                    </p>
+                    </div>
+                    
                 )}
             </div>
 
@@ -39,6 +46,7 @@ function HabitItem({ habit, toggleHabit, deleteHabit, editHabit }) {
                     <button onClick={handleSave} className="text-green-500 font-bold">Save</button>
                 ) : (
                     <>
+                        
                         <button onClick={() => setIsEditing(true)} className="text-blue-500">Edit</button>
                         <button onClick={() => deleteHabit(habit.id)} className="text-red-500">Delete</button>
                         <input

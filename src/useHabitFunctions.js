@@ -20,18 +20,44 @@ export default function useHabitFunctions () {
             id:Date.now(),
             name,
             completed:false,
+            streak:0,
+            lastCompleted: null,
         }
         setHabits((prev) => [...prev, newHabit])
     }
 
     
-    
+    //streak count and toggle habit
     const toggleHabit = (id) => {
-        setHabits((prev) => 
-            prev.map((habit) => 
-                habit.id === id ? {...habit, completed: !habit.completed} : habit
+        const today = new Date().toDateString()
 
-            )
+        setHabits(prev =>
+            prev.map(habit => {
+                if(habit.id !== id) return habit
+
+                if(habit.completed) {
+                    return { ...habit, completed:false}
+                }
+
+                let newStreak = habit.streak
+
+                if(habit.lastCompleted) {
+                    const last = new Date(habit.lastCompleted)
+
+                    const diff = Math.floor((new Date(today)-last)/(1000*60*60*24))
+                    if (diff === 1) {
+                        newStreak += 1
+                    } else if (diff > 1) {
+                        newStreak = 1
+                    } 
+                } 
+                return {
+                        ...habit,
+                        completed:true,
+                        streak:newStreak,
+                        lastCompleted:today
+                    }
+            })
         )
     }
 
