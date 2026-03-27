@@ -35,7 +35,12 @@ export default function useHabitFunctions () {
             prev.map(habit => {
                 if(habit.id !== id) return habit
 
-                if(habit.lastCompleted === today) return habit;
+                if(habit.lastCompleted === today && habit.completed) {
+                    return {
+                        ...habit,
+                        completed: false
+                    }
+                }
                 
 
                 let newStreak = 1
