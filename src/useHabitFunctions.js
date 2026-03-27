@@ -35,20 +35,17 @@ export default function useHabitFunctions () {
             prev.map(habit => {
                 if(habit.id !== id) return habit
 
-                if(habit.completed) {
-                    return { ...habit, completed:false}
-                }
+                if(habit.lastCompleted === today) return habit;
+                
 
-                let newStreak = habit.streak
+                let newStreak = 1
 
                 if(habit.lastCompleted) {
                     const last = new Date(habit.lastCompleted)
 
                     const diff = Math.floor((new Date(today)-last)/(1000*60*60*24))
                     if (diff === 1) {
-                        newStreak += 1
-                    } else if (diff > 1) {
-                        newStreak = 1
+                        newStreak = habit.streak + 1;
                     } 
                 } 
                 return {
