@@ -47,8 +47,8 @@ function HabitItem({ habit, toggleHabit, deleteHabit, editHabit }) {
                 ) : (
                     <>
                         
-                        <button onClick={() => setIsEditing(true)} className="text-blue-500">Edit</button>
-                        <button onClick={() => deleteHabit(habit.id)} className="text-red-500">Delete</button>
+                        <button onClick={() => setIsEditing(true)} className="text-blue-500 cursor-pointer">Edit</button>
+                        <button onClick={() => deleteHabit(habit.id)} className="text-red-500 cursor-pointer">Delete</button>
                         <input
                             type="checkbox"
                             className="appearance-none w-5 h-5 rounded-full dark:border-white border checked:bg-green-500 cursor-pointer relative"
