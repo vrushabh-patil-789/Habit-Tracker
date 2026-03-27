@@ -123,7 +123,7 @@ function Pomodoro() {
                         {!isRunning && (
                             <button
                             onClick={startTimer}
-                            className="mt-4 bg-green-500 px-4 py-2 rounded-full text-white font-lexend"
+                            className="mt-4 bg-green-500 cursor-pointer px-4 py-2 rounded-full text-white font-lexend"
                             >
                                 Start
 
@@ -137,14 +137,14 @@ function Pomodoro() {
                 <div className="flex gap-6 mt-6">
                     <button
                     onClick={pauseTimer}
-                    className="bg-blue-400 px-4 py-2 text-white rounded-full font-lexend"
+                    className="bg-blue-400 px-4 py-2 cursor-pointer text-white rounded-full font-lexend"
                     >
                         Pause
                     </button>
 
                     <button
                     onClick={resetTimer}
-                    className="bg-red-400 px-4 py-2 text-white rounded-full font-lexend"
+                    className="bg-red-400 px-4 py-2 cursor-pointer text-white rounded-full font-lexend"
                     >
                         Reset
                     </button>
