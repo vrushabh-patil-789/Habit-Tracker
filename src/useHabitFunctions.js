@@ -13,6 +13,21 @@ export default function useHabitFunctions () {
     useEffect(()=> {
         localStorage.setItem("habits",JSON.stringify(habits))
     },[habits])
+
+    
+
+    useEffect(() => {
+        const today = new Date().toDateString()
+
+        setHabits(prev =>
+            prev.map(habit => {
+                if (habit.lastCompleted !== today) {
+                    return { ...habit, completed: false }
+                }
+                return habit
+            })
+        )
+    }, [])
     
     //adding new habits
     const addHabit = (name) => {
@@ -35,24 +50,26 @@ export default function useHabitFunctions () {
             prev.map(habit => {
                 if(habit.id !== id) return habit
 
-                if(habit.lastCompleted === today && habit.completed) {
+                if(habit.lastCompleted === today) {
                     return {
                         ...habit,
-                        completed: false
+                        completed: !habit.completed
                     }
                 }
                 
-
                 let newStreak = 1
 
                 if(habit.lastCompleted) {
                     const last = new Date(habit.lastCompleted)
 
-                    const diff = Math.floor((new Date(today)-last)/(1000*60*60*24))
-                    if (diff === 1) {
+                    const yesterday = new Date()
+                    yesterday.setDate(yesterday.getDate() - 1)
+
+                    if (last.toDateString() === yesterday.toDateString()) {
                         newStreak = habit.streak + 1;
                     } 
                 } 
+
                 return {
                         ...habit,
                         completed:true,
